@@ -1,0 +1,62 @@
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 8px;
+  height: calc(100vh - 100px); /* Adjust height to fit within the viewport */
+}
+
+.div1 {
+  grid-column: span 2 / span 2;
+  grid-row: span 4 / span 4;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.div2 {
+  grid-column: span 2 / span 2;
+  grid-column-start: 1;
+  grid-row-start: 5;
+}
+
+.div3 {
+  grid-row: span 5 / span 5;
+  grid-column-start: 3;
+  grid-row-start: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.div4 {
+  grid-column: span 2 / span 2;
+  grid-row: span 5 / span 5;
+  grid-column-start: 4;
+  grid-row-start: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.chat-box {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.question-list-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.question-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

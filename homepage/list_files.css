@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #8b0000;
+  margin-bottom: 20px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #ccc;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.section-title {
+  font-size: 36px; /* Increase font size */
+  font-weight: bold;
+  margin-bottom: 30px; /* Increase margin for more space */
+}
+
+.file-card {
+  border: 1px solid #8b0000; /* Match the theme color */
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 24px; /* Increase font size */
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 16px; /* Increase font size */
+  line-height: 1.6; /* Increase line height for better readability */
+}
+
+.footer {
+  background-color: #8b0000;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #ccc;
+}

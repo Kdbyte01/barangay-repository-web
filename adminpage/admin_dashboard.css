@@ -1,0 +1,330 @@
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #8b0000; /* Dark red background */
+  color: white;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding-top: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transition: width 0.3s;
+  font-family: Arial, sans-serif; /* Ensure consistent font style */
+}
+
+.profile-section {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.profile-section h2 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin: 0;
+}
+
+.profile-section p {
+  font-size: 14px;
+  color: #ccc;
+  margin: 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 100%;
+  margin: 5px 0;
+  text-align: left;
+  background-color: #b22222; /* Red button */
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-family: Arial, sans-serif; /* Ensure consistent font style */
+}
+
+.sidebar a i {
+  margin-right: 10px;
+}
+
+.sidebar a:hover {
+  background-color: #a52a2a; /* Slightly darker red on hover */
+}
+
+.sidebar a.active {
+  background-color: #cd5c5c; /* Light red background for active state */
+}
+
+.logout-section {
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.logout-section a {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-family: Arial, sans-serif; /* Ensure consistent font style */
+}
+
+.logout-section a:hover {
+  background-color: #c9302c;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  margin-left: 250px;
+  transition: margin-left 0.3s;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body .form-group {
+  margin-bottom: 15px;
+}
+
+.card-body .form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.card-body .form-group input,
+.card-body .form-group textarea,
+.card-body .form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.card-body .form-group input[type="file"] {
+  padding: 3px;
+}
+
+.card-body button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.card-body button:hover {
+  background-color: #45a049;
+}
+
+.card-body .btn-secondary {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.card-body .btn-secondary:hover {
+  background-color: #c9302c;
+}
+
+.hidden {
+  display: none;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.dropdown-menu {
+  background-color: #b22222; /* Red background for dropdown */
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdown-item {
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-item:hover {
+  background-color: #a52a2a; /* Slightly darker red on hover */
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+.dropdown-toggle {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 100%;
+  margin: 5px 0;
+  text-align: left;
+  background-color: #b22222; /* Red button */
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  font-family: Arial, sans-serif; /* Ensure consistent font style */
+}
+
+.dropdown-toggle i {
+  margin-right: 10px;
+}
+
+.dropdown-menu a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 100%;
+  margin: 5px 0;
+  text-align: left;
+  background-color: #b22222; /* Red button */
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-family: Arial, sans-serif; /* Ensure consistent font style */
+}
+
+.dropdown-menu a:hover {
+  background-color: #a52a2a; /* Slightly darker red on hover */
+}
+
+.dropdown-menu a.active {
+  background-color: #cd5c5c; /* Light red background for active state */
+}
+
+.dropdown-toggle.active + .dropdown-menu {
+  display: flex;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-section h2 {
+    font-size: 14px;
+  }
+
+  .profile-section p {
+    font-size: 12px;
+  }
+
+  .sidebar a {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .dropdown-menu a {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    width: 150px;
+  }
+
+  .main-content {
+    margin-left: 150px;
+  }
+
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-section h2 {
+    font-size: 12px;
+  }
+
+  .profile-section p {
+    font-size: 10px;
+  }
+
+  .sidebar a {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .dropdown-menu a {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}

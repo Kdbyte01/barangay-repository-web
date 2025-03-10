@@ -1,0 +1,255 @@
+/* Adjust the size of the carousel */
+.carousel-inner {
+  height: auto; /* Adjust the height as needed */
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container without stretching */
+}
+
+/* Add border to the carousel */
+.carousel {
+  border: 5px solid #873131; /* Adjust the border color and width as needed */
+  border-radius: 10px; /* Optional: Add rounded corners to the border */
+  height: auto; /* Adjust the height as needed */
+  width: 100%; /* Ensure the carousel takes up the full width of its container */
+  overflow: hidden; /* Ensure the border radius is applied correctly */
+}
+
+/* Apply the theme from homepagev6.css */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+.navbar {
+  background-color: maroon;
+  color: white;
+  padding: 15px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 15px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.navbar-right a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar-right a:hover {
+  color: #ffcccb;
+}
+
+.btn-login {
+  background-color: white;
+  color: maroon;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-login:hover {
+  background-color: #ffcccb;
+  color: maroon;
+}
+
+.hero {
+  height: 100vh;
+  position: relative;
+}
+
+.hero-top {
+  background: url("/uploads/officialshmpgcrop.png") no-repeat center center;
+  background-size: cover;
+  height: 55%;
+  min-height: 300px; /* Ensure the hero-top has a minimum height */
+  transition: background-size 0.5s ease, height 0.5s ease; /* Smooth transition for the zoom effect */
+}
+
+/* Media Queries for Zoom Out Effect */
+@media (max-width: 768px) {
+  .hero-top {
+    background-size: contain; /* Adjust the background size to contain for smaller screens */
+    height: 45%; /* Adjust the height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-top {
+    background-size: contain; /* Adjust the background size to contain for even smaller screens */
+    height: 40%; /* Adjust the height for even smaller screens */
+  }
+}
+
+/* Other styles */
+.hero-bottom {
+  background-color: white;
+  height: 50%;
+}
+
+.hero-content {
+  position: absolute;
+  top: 61%;
+  left: 42%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  color: black;
+}
+
+.hero-logo {
+  margin-right: 20px;
+}
+
+.center-logo {
+  height: 300px;
+  width: 300px;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 65px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.hero-text h2 {
+  font-size: 50px;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: white;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.chat-icon:hover {
+  background-color: #ffcccb;
+}
+
+.chat-icon img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero-content {
+    top: auto;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-logo {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .center-logo {
+    height: 200px;
+    width: 200px;
+  }
+
+  .hero-text h1 {
+    font-size: 50px;
+  }
+
+  .hero-text h2 {
+    font-size: 40px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-logo {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .center-logo {
+    height: 150px;
+    width: 150px;
+  }
+
+  .hero-text h1 {
+    font-size: 40px;
+  }
+
+  .hero-text h2 {
+    font-size: 30px;
+  }
+
+  .hero-text p {
+    font-size: 14px;
+  }
+}

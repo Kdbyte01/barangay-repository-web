@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+h3 {
+  font-weight: bold;
+  border-bottom: 3px solid darkred;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card {
+  border: 1px solid #343a40;
+}
+
+.card-header {
+  background-color: #343a40;
+  color: white;
+  font-weight: bold;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+th {
+  background-color: #343a40;
+  color: white;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.proceed-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.proceed-btn button {
+  font-size: 18px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proceed-btn button i {
+  margin-right: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}

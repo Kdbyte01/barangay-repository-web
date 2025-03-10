@@ -1,0 +1,80 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h2 {
+  margin-bottom: 30px;
+  color: #343a40;
+}
+
+h4 {
+  margin-top: 20px;
+  color: #343a40;
+}
+
+.btn {
+  margin: 10px;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #d1ecf1;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f8f9fa;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.selected {
+  background-color: #007bff !important;
+  color: white;
+}
+
+.scrollable-table {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.border {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}

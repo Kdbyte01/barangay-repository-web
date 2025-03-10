@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.container {
+  width: 90%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h3,
+h4 {
+  color: #333;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Chart Section */
+.chart-container {
+  margin: 20px 0;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Calendar Styles */
+.calendar {
+  margin-top: 20px;
+}
+
+.calendar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar th,
+.calendar td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.calendar th {
+  background-color: #f2f2f2;
+}
+
+.bg-primary {
+  background-color: #007bff !important;
+}
+
+.text-white {
+  color: #fff !important;
+}
+
+/* Events Section */
+.events {
+  margin-top: 20px;
+}
+
+.events table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.events th,
+.events td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.events th {
+  background-color: #f2f2f2;
+}
+
+/* Button Styles */
+button {
+  padding: 10px 15px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.back-button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 20px;
+}
