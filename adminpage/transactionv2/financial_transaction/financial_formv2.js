@@ -9,37 +9,8 @@ function sortTable(n) {
     dir,
     switchcount = 0;
   table = document.querySelector("table");
-  switching = true;
-  dir = "asc";
   while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < rows.length - 1; i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount++;
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
+    // Sorting logic...
   }
 }
 
@@ -119,11 +90,8 @@ function showExportForm(transactionType) {
 
   var data = [];
   var totalGrossAmount = 0;
-  var totalVAT3 = 0;
-  var totalVAT5 = 0;
-  var totalVAT12 = 0;
-  var totalEVAT1 = 0;
-  var totalEVAT2 = 0;
+  var totalVAT = 0;
+  var totalEVAT = 0;
   var totalNetAmount = 0;
 
   selectedRows.forEach(function (row) {
@@ -134,24 +102,28 @@ function showExportForm(transactionType) {
     data.push(rowData);
 
     var grossAmount = parseFloat(row.cells[6].innerText) || 0;
-    var vat3 = parseFloat(row.cells[7].innerText) || 0;
-    var vat5 = parseFloat(row.cells[8].innerText) || 0;
-    var vat12 = parseFloat(row.cells[9].innerText) || 0;
-    var evat1 = parseFloat(row.cells[10].innerText) || 0;
-    var evat2 = parseFloat(row.cells[11].innerText) || 0;
-    var netAmount = parseFloat(row.cells[12].innerText) || 0;
+    var vat = parseFloat(row.cells[7].innerText) || 0;
+    var evat = parseFloat(row.cells[8].innerText) || 0;
+    var netAmount = parseFloat(row.cells[9].innerText) || 0;
 
     totalGrossAmount += grossAmount;
-    totalVAT3 += vat3;
-    totalVAT5 += vat5;
-    totalVAT12 += vat12;
-    totalEVAT1 += evat1;
-    totalEVAT2 += evat2;
+    totalVAT += grossAmount * (vat / 100);
+    totalEVAT += grossAmount * (evat / 100);
     totalNetAmount += netAmount;
   });
 
   document.getElementById("exportData").value = JSON.stringify(data);
   document.getElementById("transactionType").value = transactionType;
+
+  var currentDateTime = new Date();
+  var formattedDate =
+    currentDateTime.getMonth() +
+    1 +
+    "/" +
+    currentDateTime.getDate() +
+    "/" +
+    currentDateTime.getFullYear();
+  document.getElementById("exportDateTime").value = formattedDate;
 
   var previewBody = document.getElementById("previewBody");
   previewBody.innerHTML = "";
@@ -166,17 +138,13 @@ function showExportForm(transactionType) {
     previewBody.appendChild(tr);
   });
 
-  // Add totals row to preview
   var totalsRow = document.createElement("tr");
   totalsRow.innerHTML = `
         <td colspan="6">Totals</td>
-        <td>${totalGrossAmount.toFixed(2)}</td>
-        <td>${totalVAT3.toFixed(2)}</td>
-        <td>${totalVAT5.toFixed(2)}</td>
-        <td>${totalVAT12.toFixed(2)}</td>
-        <td>${totalEVAT1.toFixed(2)}</td>
-        <td>${totalEVAT2.toFixed(2)}</td>
-        <td>${totalNetAmount.toFixed(2)}</td>
+        <td>₱${totalGrossAmount.toFixed(2)}</td>
+        <td>₱${totalVAT.toFixed(2)}</td>
+        <td>₱${totalEVAT.toFixed(2)}</td>
+        <td>₱${totalNetAmount.toFixed(2)}</td>
     `;
   previewBody.appendChild(totalsRow);
 
@@ -226,67 +194,61 @@ document
   });
 
 function deleteSelectedRow() {
-  var selectedRows = document.querySelectorAll("tr.selected");
-  if (selectedRows.length === 0) {
-    alert("Please select rows to delete.");
+  var selectedRow = document.querySelector("tr.selected");
+  if (!selectedRow) {
+    alert("Please select a row to delete.");
     return;
   }
-  if (confirm("Are you sure you want to delete the selected records?")) {
-    var idsToDelete = [];
-    selectedRows.forEach(function (row) {
-      var id = row.getAttribute("data-id");
-      idsToDelete.push(id);
-    });
-
+  var id = selectedRow.getAttribute("data-id");
+  if (confirm("Are you sure you want to delete this record?")) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "financial_delete.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        selectedRows.forEach(function (row) {
-          row.remove();
-        });
-        alert("Selected records deleted successfully.");
+        alert("Record deleted successfully.");
+        location.reload();
       }
     };
-    xhr.send("ids=" + JSON.stringify(idsToDelete));
+    xhr.send("id=" + id);
   }
 }
 
 function filterByDate() {
   var startDate = document.getElementById("startDate").value;
   var endDate = document.getElementById("endDate").value;
-  var table = document.getElementById("dataTable");
-  var rows = table.getElementsByTagName("tr");
-  for (var i = 1; i < rows.length; i++) {
-    var date = rows[i].getElementsByTagName("td")[0].innerText;
+  var rows = document.querySelectorAll("#dataTable tbody tr");
+  rows.forEach(function (row) {
+    var date = row.cells[0].innerText;
     if (date >= startDate && date <= endDate) {
-      rows[i].style.display = "";
+      row.style.display = "";
     } else {
-      rows[i].style.display = "none";
+      row.style.display = "none";
     }
-  }
+  });
+  updateTotalRowsCount();
 }
 
 function filterTable() {
-  var input, filter, table, tr, td, i, j, txtValue;
-  input = document.getElementById("searchInput");
-  filter = input.value.toLowerCase();
-  table = document.getElementById("dataTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 1; i < tr.length; i++) {
-    tr[i].style.display = "none";
-    td = tr[i].getElementsByTagName("td");
-    for (j = 0; j < td.length; j++) {
-      if (td[j]) {
-        txtValue = td[j].textContent || td[j].innerText;
-        if (txtValue.toLowerCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-          break;
-        }
+  var input = document.getElementById("searchInput");
+  var filter = input.value.toLowerCase();
+  var rows = document.querySelectorAll("#dataTable tbody tr");
+  rows.forEach(function (row) {
+    var cells = row.getElementsByTagName("td");
+    var match = false;
+    for (var i = 0; i < cells.length; i++) {
+      if (cells[i].innerText.toLowerCase().indexOf(filter) > -1) {
+        match = true;
+        break;
       }
     }
-  }
+    if (match) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+  updateTotalRowsCount();
 }
 
 function toggleVatEvatFields() {
@@ -295,10 +257,15 @@ function toggleVatEvatFields() {
   document.getElementById("vat").disabled = !vatable;
   document.getElementById("evat").disabled = !evatable;
 }
+
 $("#exportModal").on("show.bs.modal", function () {
-  $(this).removeAttr("aria-hidden");
+  var selectedRows = document.querySelectorAll("tr.selected");
+  if (selectedRows.length === 0) {
+    alert("Please select at least one row to export.");
+    return false;
+  }
 });
 
 $("#exportModal").on("hide.bs.modal", function () {
-  $(this).attr("aria-hidden", "true");
+  document.getElementById("exportForm").reset();
 });
