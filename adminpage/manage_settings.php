@@ -4,10 +4,10 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Check if the user is logged in
-if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
-    header("Location: ../homepage/login.php");
-    exit();
-}
+// if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
+//     header("Location: ../homepage/login.php");
+//     exit();
+// }
 
 // Include the database connection file
 include '../includes/db_connect.php';
@@ -99,6 +99,7 @@ $result = $conn->query($sql);
         <div class="action-icons mb-4">
             <button class="btn btn-primary" id="addSettingBtn"><i class="fas fa-plus"></i> Add Setting</button>
             <a href="admin_dashboard.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+            <a href="transactionv2/financial_transaction/financial_transactionv2.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Transaction</a>
         </div>
 
         <!-- Hidden Form for Adding/Editing Settings -->

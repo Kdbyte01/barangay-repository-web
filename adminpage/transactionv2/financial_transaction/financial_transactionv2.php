@@ -162,13 +162,17 @@ function getDateRange($data)
 
 <body>
     <div class="container-fluid">
-        <div class="row m-4">
-            <button class="btn btn-secondary mr-4" onclick="location.href='../transactionv2.php'">
-                <i class="fas fa-arrow-left"></i> Back
+        <div class="row m-4 d-flex align-items-center justify-content-between">
+            <div>
+                <button class="btn btn-secondary mr-4" onclick="location.href='../transactionv2.php'">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 class="text-primary d-inline">Summary of Financial Transactions</h2>
+            </div>
+            <button class="btn btn-primary" onclick="location.href='../../manage_settings.php'">
+                <i class="fas fa-cog"></i> Configuration
             </button>
-            <h2 class="text-primary">Summary of Financial Transactions</h2>
         </div>
-
         <div class="card m-3">
             <div class="card-header">
                 <h5 class="card-title mb-0">Transaction History</h5>

@@ -71,13 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['export'])) {
     $totalNetAmount = 0;
 
     foreach ($data as $row) {
-        $grossAmount = isset($row[6]) ? floatval($row[6]) : 0;
-        $vat3 = isset($row[7]) ? floatval($row[7]) : 0;
-        $vat5 = isset($row[8]) ? floatval($row[8]) : 0;
-        $vat12 = isset($row[9]) ? floatval($row[9]) : 0;
-        $evat1 = isset($row[10]) ? floatval($row[10]) : 0;
-        $evat2 = isset($row[11]) ? floatval($row[11]) : 0;
-        $netAmount = isset($row[12]) ? floatval($row[12]) : 0;
+        $grossAmount = floatval($row[6]);
+        $vat3 = floatval($row[7]);
+        $vat5 = floatval($row[8]);
+        $vat12 = floatval($row[9]);
+        $evat1 = floatval($row[10]);
+        $evat2 = floatval($row[11]);
+        $netAmount = floatval($row[12]);
 
         $totalGrossAmount += $grossAmount;
         $totalVAT3 += $vat3;
@@ -126,16 +126,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['export'])) {
             $pdf->Cell($widths[3], 6, '', 1);
             $pdf->Cell($widths[4], 6, '', 1);
             $pdf->Cell($widths[5], 6, 'Totals:', 1, 0, 'C');
-            $pdf->Cell($widths[6], 6, '' . number_format($totalGrossAmount, 2), 1, 0, 'C');
-            $pdf->Cell($widths[7], 6, '' . number_format($totalVAT3, 2), 1, 0, 'C');
-            $pdf->Cell($widths[8], 6, '' . number_format($totalVAT5, 2), 1, 0, 'C');
-            $pdf->Cell($widths[9], 6, '' . number_format($totalVAT12, 2), 1, 0, 'C');
-            $pdf->Cell($widths[10], 6, '' . number_format($totalEVAT1, 2), 1, 0, 'C');
-            $pdf->Cell($widths[11], 6, '' . number_format($totalEVAT2, 2), 1, 0, 'C');
+            $pdf->Cell($widths[6], 6, '₱' . number_format($totalGrossAmount, 2), 1, 0, 'C');
+            $pdf->Cell($widths[7], 6, '₱' . number_format($totalVAT3, 2), 1, 0, 'C');
+            $pdf->Cell($widths[8], 6, '₱' . number_format($totalVAT5, 2), 1, 0, 'C');
+            $pdf->Cell($widths[9], 6, '₱' . number_format($totalVAT12, 2), 1, 0, 'C');
+            $pdf->Cell($widths[10], 6, '₱' . number_format($totalEVAT1, 2), 1, 0, 'C');
+            $pdf->Cell($widths[11], 6, '₱' . number_format($totalEVAT2, 2), 1, 0, 'C');
+            $pdf->Cell($widths[12], 6, '₱' . number_format($totalNetAmount, 2), 1, 0, 'C');
 
             // Output the PDF
-            $pdf->Output('I', $filename . '.pdf');
-            // $pdf->Output('D', $filename . '.pdf');
+            $pdf->Output('D', $filename . '.pdf');
         } elseif ($exportType == 'CSV') {
             header('Content-Type: text/csv');
             header('Content-Disposition: attachment;filename=' . $filename . '.csv');
@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['export'])) {
             // Add a clear row above the totals row
             fputcsv($output, array());
             // Add totals
-            fputcsv($output, array('', '', '', '', '', 'Totals', '' . number_format($totalGrossAmount, 2), '' . number_format($totalVAT3, 2), '' . number_format($totalVAT5, 2), '' . number_format($totalVAT12, 2), '' . number_format($totalEVAT1, 2), '' . number_format($totalEVAT2, 2), '' . number_format($totalNetAmount, 2)));
+            fputcsv($output, array('', '', '', '', '', 'Totals', '₱' . number_format($totalGrossAmount, 2), '₱' . number_format($totalVAT3, 2), '₱' . number_format($totalVAT5, 2), '₱' . number_format($totalVAT12, 2), '₱' . number_format($totalEVAT1, 2), '₱' . number_format($totalEVAT2, 2), '₱' . number_format($totalNetAmount, 2)));
             fclose($output);
         } elseif ($exportType == 'EXCEL') {
             header('Content-Type: application/vnd.ms-excel');
