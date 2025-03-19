@@ -10,20 +10,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $payee = $_POST['payee'];
     $particulars = $_POST['particulars'];
     $grossAmount = floatval($_POST['grossAmount']); // Ensure it's a float
-    $vatable = $_POST['vatable']; // 1 if checked, 0 otherwise
-    $vatvalue = $_POST['vat']; // 1 if checked, 0 otherwise
-    $evatvalue = $_POST['evat']; // 1 if checked, 0 otherwise
+    $vatable = intval($_POST['vatable']); // Convert to integer (0 or 1)
 
-    // Set default VAT and EVAT values if not provided
-    $vatPercent = isset($_POST['vat']) ? floatval(str_replace('%', '', $_POST['vat'])) / 100 : 0;
-    $evatPercent = isset($_POST['evat']) ? floatval(str_replace('%', '', $_POST['evat'])) / 100 : 0;
+    // Default values for VAT & EVAT
+    $vat = 0;
+    $evat = 0;
+    $vatvalue = 0;
+    $evatvalue = 0;
+    $totalAmount = $grossAmount;
 
-    // Compute VAT & EVAT
-    $vat = $grossAmount * $vatPercent;
-    $evat = $grossAmount * $evatPercent;
+    // If vatable, compute VAT & EVAT
+    if ($vatable === 1) {
+        $vatvalue = isset($_POST['vat']) ? floatval(str_replace('%', '', $_POST['vat'])) / 100 : 0;
+        $evatvalue = isset($_POST['evat']) ? floatval(str_replace('%', '', $_POST['evat'])) / 100 : 0;
 
-    // Compute Total Amount
-    $totalAmount = $grossAmount - $vat - $evat;
+        $vat = $grossAmount * $vatvalue;
+        $evat = $grossAmount * $evatvalue;
+
+        $totalAmount = $grossAmount - $vat - $evat;
+    }
 
     $sql = "INSERT INTO financial_transaction (date, cheque_no, dv_no, fund, payee, particulars, gross_amount, vatable, vat, evat, vat_amount, evat_amount, net_amount)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
